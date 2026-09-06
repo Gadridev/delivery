@@ -4,6 +4,14 @@ import mongoose from 'mongoose';
 export interface CustomError extends Error {
   statusCode?: number;
 }
+export class AppError extends Error {
+  statusCode: number;
+
+  constructor(message: string, statusCode: number) {
+    super(message);
+    this.statusCode = statusCode;
+  }
+}
 
 export const errorHandler: ErrorRequestHandler = (
   err: CustomError,
